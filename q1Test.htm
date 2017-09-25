@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Testing JavaScript</title>
+<meta name="description" content="Testing">
+<meta name="JavaScript test" content="JavaScript, testing, Clive Nicholson">
+
+<script src="deepClone.js">
+</script>
+
+<script>
+  function test () {
+    var a = {
+      name: "Paddy Mann",
+      address: {
+        town: "Lerum",
+        country: "Sweden"
+      }
+    }
+    var b = deepClone(a); // copy a to b
+    var str = '';
+    str += dumpObj(b);
+    alert(str);
+  }
+  function dumpObj(b) {
+    var wkStr = '';
+    for (var p in b) {
+      if (b.hasOwnProperty(p)) {
+        wkStr += p + ': ';
+        if (typeof(b[p]) == 'object') {
+          wkStr += '\n' + dumpObj(b[p]);
+        }
+        else {
+          wkStr += b[p];
+        }
+        wkStr += '\n';
+      }
+    }
+    return(wkStr);
+  }
+</script>
+</head>
+<body>
+<h2 style="font-family:Arial">Testing Q1</h1>
+<p>
+<a href="JavaScript: test()">Click to see copied object</a>
+</body>
+</html>
